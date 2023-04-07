@@ -4,12 +4,12 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.18.0'
+//        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.18.0'
     }
 }
 
 apply plugin: 'groovy'
-apply plugin: "com.vanniktech.maven.publish"
+apply plugin: 'maven-publish'
 
 java {
     sourceCompatibility JavaVersion.VERSION_1_8
@@ -19,4 +19,20 @@ java {
 dependencies {
     implementation gradleApi()
     implementation 'com.squareup:javapoet:1.13.0'
+}
+
+project.publishing {
+    repositories {
+
+    }
+
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.qjc.junkcode'
+            artifactId = 'gradle-plugin'
+            version = "1.0.0"
+            from components.java
+            println("publish version is: $version")
+        }
+    }
 }
