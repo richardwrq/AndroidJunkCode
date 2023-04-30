@@ -93,11 +93,11 @@ class AndroidJunkCodeTask extends DefaultTask {
             case 0:
                 methodBuilder.addStatement("long now = \$T.currentTimeMillis()", System.class)
                         .beginControlFlow("if (\$T.currentTimeMillis() < now)", System.class)
-                        .addStatement("\$T.out.println(\$S)", System.class, "Time travelling, woo hoo!")
+                        .addComment("block")
                         .nextControlFlow("else if (\$T.currentTimeMillis() == now)", System.class)
-                        .addStatement("\$T.out.println(\$S)", System.class, "Time stood still!")
+                        .addComment("block")
                         .nextControlFlow("else")
-                        .addStatement("\$T.out.println(\$S)", System.class, "Ok, time still moving forward")
+                        .addComment("block")
                         .endControlFlow()
                 break
             case 1:
@@ -116,19 +116,24 @@ class AndroidJunkCodeTask extends DefaultTask {
                 break
             case 3:
                 methodBuilder.returns(Date.class)
+                        .addComment("block")
                         .addStatement("return new \$T()", Date.class)
                 break
             case 4:
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(void.class)
                         .addParameter(String[].class, "args")
-                        .addStatement("\$T.out.println(\$S)", System.class, "Hello")
+                        .addComment("block")
+                        .addComment("block")
                 break
             default:
                 methodBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(void.class)
                         .addParameter(String[].class, "args")
-                        .addStatement("\$T.out.println(\$S)", System.class, "Hello")
+                        .addComment("block")
+                        .addComment("block")
+                        .addComment("block")
+                        .addComment("block")
         }
     }
 
@@ -152,7 +157,9 @@ class AndroidJunkCodeTask extends DefaultTask {
                     .addModifiers(Modifier.PROTECTED)
                     .addParameter(bundleClassName, "savedInstanceState")
                     .addStatement("super.onCreate(savedInstanceState)")
+                    .addComment("block")
                     .addStatement("setContentView(\$T.layout.${layoutName})", ClassName.get(namespace, "R"))
+                    .addComment("block")
                     .build())
             //其它方法
             for (int j = 0; j < config.methodCountPerClass; j++) {
