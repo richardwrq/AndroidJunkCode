@@ -102,9 +102,13 @@ class AndroidJunkCodeTask extends DefaultTask {
                 break
             case 1:
                 methodBuilder.addCode(""
+                        + "  //block\n"
                         + "int total = 0;\n"
+                        + "  //block\n"
                         + "for (int i = 0; i < 10; i++) {\n"
+                        + "  //block\n"
                         + "  total += i;\n"
+                        + "  //block\n"
                         + "}\n")
                 break
             case 2:
@@ -116,6 +120,8 @@ class AndroidJunkCodeTask extends DefaultTask {
                 break
             case 3:
                 methodBuilder.returns(Date.class)
+                        .addComment("block")
+                        .addComment("block")
                         .addComment("block")
                         .addStatement("return new \$T()", Date.class)
                 break
